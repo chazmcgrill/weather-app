@@ -1,5 +1,6 @@
 import * as React from 'react';
+import './WeatherDisplay.css';
 
 export default () => (
-    <div>Weather Screen</div>
+    <div className="weather-display">Weather Screen</div>
 )

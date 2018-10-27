@@ -1,5 +1,6 @@
 import * as React from 'react';
+import './Forecast.css';
 
 export default () => (
-    <div>Forecast</div>
+    <div className="forecast">Forecast</div>
 )
