@@ -36,10 +36,11 @@ export default class App extends React.Component<{}, IState> {
   }
 
   public render() {
+    console.log(this.state.data)
     return (
       <React.Fragment>
         <Header />
-        <WeatherDisplay />
+        <WeatherDisplay data={this.state.data}/>
         <Forecast />
       </React.Fragment>
     );

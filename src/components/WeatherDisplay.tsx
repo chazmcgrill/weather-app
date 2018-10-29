@@ -1,6 +1,15 @@
 import * as React from 'react';
 import './WeatherDisplay.css';
 
-export default () => (
-    <div className="weather-display">Weather Screen</div>
-)
+interface IWeatherDisplayProps {
+    data: any;
+}
+
+export default (props: IWeatherDisplayProps) => {
+    if (Object.keys(props.data).length === 0) {
+        return <div>Loading...</div>
+    } 
+    
+    return <div className="weather-display">{props.data.weather[0].main}</div>;
+};
+
