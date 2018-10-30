@@ -36,7 +36,6 @@ export default class App extends React.Component<{}, IState> {
   }
 
   public render() {
-    console.log(this.state.data)
     return (
       <React.Fragment>
         <Header />
