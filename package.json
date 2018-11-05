@@ -2,9 +2,9 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "Full Stack Weather Application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/chazmcgrill/weather-app/issues"
   },
-  "homepage": "https://github.com/chazmcgrill/weather-app#readme"
+  "homepage": "https://github.com/chazmcgrill/weather-app#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
