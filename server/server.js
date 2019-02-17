@@ -1,7 +1,11 @@
 const express = require('express');
+const cors = require('cors')
 const fetch = require('node-fetch');
+require('dotenv').config();
 
 const app = express();
+
+app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
 
 app.get('/', (req, res) => {
     res.send('app working');
@@ -15,9 +19,7 @@ app.get('/api/weather', (req, res) => {
         })
         .catch(err => {
             console.log(err);
-        })
-
-    
+        });    
 });
 
 app.listen(4001, () => {

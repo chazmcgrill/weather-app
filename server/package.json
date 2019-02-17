@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/chazmcgrill/weather-app#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "node-fetch": "^2.2.1"
   }

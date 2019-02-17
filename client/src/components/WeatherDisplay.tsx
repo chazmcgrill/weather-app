@@ -1,4 +1,6 @@
 import * as React from 'react';
+import WeatherIcons from '../classes/WeatherIcons';
+import '@mdi/font/css/materialdesignicons.css'
 import './WeatherDisplay.css';
 
 interface IWeatherDisplayProps {
@@ -9,15 +11,13 @@ export default (props: IWeatherDisplayProps) => {
     if (Object.keys(props.data).length === 0) {
         return <div>Loading...</div>;
     }
-
-    const weather = props.data.weather[0];
     
     return <div className="weather-display">
-        <h1>{props.data.name}</h1>
-        <h2>{`${Math.floor(props.data.main.temp)}°C`}</h2>
-        <img src={weather.icon} alt={weather.main} />
-        <h3>{weather.main}</h3>
-        <p>{weather.description}</p>
+        <h1>Location</h1>
+        <h2>{`${Math.floor(props.data.currently.temperature)}°C`}</h2>
+        <span className={`mdi mdi-${WeatherIcons.weatherType(props.data.currently.icon).iconSlug}`} />
+        <h3>{props.data.currently.summary}</h3>
+        <p>{props.data.hourly.summary}</p>
       </div>;
 };
 
