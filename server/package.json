@@ -2,9 +2,13 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "Full Stack Weather Application",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,9 +21,18 @@
   },
   "homepage": "https://github.com/chazmcgrill/weather-app#readme",
   "dependencies": {
+    "@types/cors": "^2.8.4",
+    "@types/dotenv": "^6.1.0",
+    "@types/node-fetch": "^2.1.6",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "node-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.9.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
   }
 }
