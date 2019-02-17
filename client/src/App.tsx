@@ -5,12 +5,12 @@ import Header from './components/Header';
 import WeatherDisplay from './components/WeatherDisplay';
 
 interface IState {
-  data: {}
+  weather: {}
 }
 
 export default class App extends React.Component<{}, IState> {
   public state: IState = {
-    data: {}
+    weather: {}
   }
 
   public componentDidMount() {
@@ -18,8 +18,8 @@ export default class App extends React.Component<{}, IState> {
   }
 
   public async callApi() {
-    const data = await this.api('http://localhost:4001/api/weather');
-    this.setState({ data });
+    const weather = await this.api('http://localhost:4001/api/weather');
+    this.setState({ weather });
   }
   
   public api<T>(url: string): Promise<T> { 
@@ -39,8 +39,8 @@ export default class App extends React.Component<{}, IState> {
     return (
       <React.Fragment>
         <Header />
-        <WeatherDisplay data={this.state.data}/>
-        <Forecast />
+        <WeatherDisplay weather={this.state.weather}/>
+        <Forecast weather={this.state.weather} />
       </React.Fragment>
     );
   }
