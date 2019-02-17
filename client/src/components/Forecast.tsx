@@ -1,5 +1,6 @@
 import * as React from 'react';
 import WeatherIcons from '../classes/WeatherIcons';
+import NumberFormat from '../classes/NumberFormat';
 import '@mdi/font/css/materialdesignicons.css';
 import './Forecast.css';
 
@@ -19,8 +20,8 @@ export default (props: IForecastProps) => {
             {forecast.map((day: any) => (
                 <div key={day.time} className="forecast-card">
                     <span className={`mdi mdi-${WeatherIcons.weatherType(day.icon).iconSlug}`} />
-                    <span>{day.temperatureMax}</span>
-                    <span>{day.temperatureMin}</span>
+                    <span>{NumberFormat.from(day.temperatureMax).degreesC}</span>
+                    <span>{NumberFormat.from(day.temperatureMin).degreesC}</span>
                 </div>
             ))}
         </div>
