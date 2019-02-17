@@ -18,7 +18,7 @@ export default class App extends React.Component<{}, IState> {
   }
 
   public async callApi() {
-    const data = await this.api(process.env.REACT_APP_TEST_API_URL || "");
+    const data = await this.api(process.env.REACT_APP_TEST_API_URL || '');
     this.setState({ data });
   }
   

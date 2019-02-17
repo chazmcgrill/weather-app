@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/chazmcgrill/weather-app#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "node-fetch": "^2.2.1"
   }
 }
