@@ -3,3 +3,7 @@
     height: 85vh;
     padding: 0.5rem 1rem;
 }
+
+.weather-display--icon {
+    font-size: 50px;
+}
