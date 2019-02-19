@@ -14,3 +14,7 @@
     align-items: center;
     margin: 1rem;
 }
+
+.forecast-card .mdi {
+    font-size: 32px;
+}
