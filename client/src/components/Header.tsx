@@ -3,8 +3,8 @@ import './Header.css';
 
 export default () => (
   <header className="header">
-    <div>logo</div>
+    <span className="mdi mdi-emoticon-happy-outline" />
     <h4>Weather</h4>
-    <div>menu</div>
+    <span className="mdi mdi-settings" />
   </header>
 );
