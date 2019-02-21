@@ -25,7 +25,8 @@ app.get("/api/weather", (req, res) => {
         });
 });
 
-app.listen(4001, () => {
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
     // tslint:disable-next-line:no-console
-    console.log("app running on port 4001");
+    console.log(`app running on port ${PORT}`);
 });

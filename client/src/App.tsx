@@ -18,7 +18,7 @@ export default class App extends React.Component<{}, IState> {
   }
 
   public async callApi() {
-    const weather = await this.api('http://localhost:4001/api/weather');
+    const weather = await this.api('https://vast-brushlands-88355.herokuapp.com/api/weather');
     this.setState({ weather });
   }
   
