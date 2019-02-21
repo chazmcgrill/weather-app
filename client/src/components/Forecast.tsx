@@ -14,7 +14,7 @@ export default (props: IForecastProps) => {
     }
 
     const { data: forecast } = props.weather.daily;
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     let currentDay = new Date().getDay();
 

@@ -4,8 +4,21 @@
     justify-content: space-between;
     padding: 0.5rem 1rem;
     background: pink;
+    position: relative;
 }
 
 .header .mdi {
     font-size: 28px;
+}
+
+.header .mdi-settings {
+    cursor: pointer;
+}
+
+.header-settings {
+    position: absolute;
+    background: white;
+    right: 1rem;
+    top: 4rem;
+    padding: 2rem;
 }
