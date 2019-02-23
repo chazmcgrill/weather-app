@@ -5,21 +5,24 @@ import Header from './components/Header';
 import WeatherDisplay from './components/WeatherDisplay';
 
 interface IState {
-  weather: {}
+  weather: any
+  selectedWeather: {}
 }
 
 export default class App extends React.Component<{}, IState> {
   public state: IState = {
-    weather: {}
+    weather: {},
+    selectedWeather: {},
   }
 
   public componentDidMount() {
-    this.callApi();
+    this.fetchWeatherData();
   }
 
-  public async callApi() {
-    const weather = await this.api('https://vast-brushlands-88355.herokuapp.com/api/weather');
-    this.setState({ weather });
+  public async fetchWeatherData() {
+    const weather: any = await this.api('https://vast-brushlands-88355.herokuapp.com/api/weather');
+    const selectedWeather = weather.daily.data[0];
+    this.setState({ weather, selectedWeather });
   }
   
   public api<T>(url: string): Promise<T> { 
@@ -35,12 +38,17 @@ export default class App extends React.Component<{}, IState> {
       });
   }
 
+  handleForecastClick = (idx: number) => {
+    const selectedWeather = this.state.weather.hourly.data[idx]
+    this.setState({ selectedWeather });
+  }
+
   public render() {
     return (
       <React.Fragment>
         <Header />
-        <WeatherDisplay weather={this.state.weather}/>
-        <Forecast weather={this.state.weather} />
+        <WeatherDisplay weather={this.state.weather} currentWeather={this.state.selectedWeather} />
+        <Forecast weather={this.state.weather} handleForecastClick={this.handleForecastClick} />
       </React.Fragment>
     );
   }

@@ -5,7 +5,8 @@ import '@mdi/font/css/materialdesignicons.css';
 import './Forecast.css';
 
 interface IForecastProps {
-    weather: any
+    weather: any,
+    handleForecastClick: (idx: number) => void,
 }
 
 export default (props: IForecastProps) => {
@@ -20,11 +21,11 @@ export default (props: IForecastProps) => {
 
     return (
         <div className="forecast">
-            {forecast.map((day: any, i: number) => {
-                const index = currentDay + i > 6 ? currentDay + i - 7 : currentDay + i;
-                const dayText = days[index];
+            {forecast.map((day: any, idx: number) => {
+                const dayIndex = currentDay + idx > 6 ? currentDay + idx - 7 : currentDay + idx;
+                const dayText = days[dayIndex];
                 return (
-                    <div key={day.time} className="forecast-card">
+                    <div key={day.time} className="forecast-card" onClick={() => props.handleForecastClick(idx)}>
                         <span>{dayText}</span>
                         <span className={`mdi mdi-${WeatherIcons.weatherType(day.icon).iconSlug}`} />
                         <span>{NumberFormat.from(day.temperatureMax).degreesC}</span>

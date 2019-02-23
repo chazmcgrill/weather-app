@@ -30,7 +30,7 @@ export default class WeatherIcons {
             case 'partly-cloudy-day':
                 return 'weather-partlycloudy';
             case 'partly-cloudy-night':
-                return 'weather-night';
+                return 'weather-partlycloudy';
             case 'hail':
                 return 'weather-hail';
             case 'thunderstorm':
