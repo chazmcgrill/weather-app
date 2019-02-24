@@ -1,5 +1,4 @@
 import * as React from 'react';
-import axios from 'axios';
 import './App.css';
 import Forecast from './components/Forecast';
 import Header from './components/Header';
@@ -20,7 +19,13 @@ export default class App extends React.Component<{}, IState> {
     weather: {},
     selectedWeather: {},
     locationText: '',
-    location: null,
+    location: {
+      addressLabel: 'Leeds UK',
+      geometry: {
+        lat: 53.8007554,
+        lng: -1.5490774
+      }
+    },
   }
 
   public componentDidMount() {
@@ -39,11 +44,14 @@ export default class App extends React.Component<{}, IState> {
       addressLabel: formatted_address,
       geometry: geometry.location
     }
-    this.setState({ location });
+    await this.setState({ location });
+    this.fetchWeatherData();
   }
 
   public async fetchWeatherData() {
-    const weather: any = await this.api(DEV_API);
+    const { lat, lng } = this.state.location.geometry;
+    const latlng = `${lat},${lng}`;
+    const weather: any = await this.api(`${DEV_API}/${latlng}`);
     const selectedWeather = weather.daily.data[0];
     this.setState({ weather, selectedWeather });
   }
@@ -83,7 +91,7 @@ export default class App extends React.Component<{}, IState> {
     return (
       <React.Fragment>
         <Header />
-        <WeatherDisplay weather={this.state.weather} currentWeather={this.state.selectedWeather} handleTextChange={this.handleTextChange} locationText={this.state.locationText} handleLocationSubmit={this.handleLocationSubmit} />
+        <WeatherDisplay location={this.state.location} weather={this.state.weather} currentWeather={this.state.selectedWeather} handleTextChange={this.handleTextChange} locationText={this.state.locationText} handleLocationSubmit={this.handleLocationSubmit} />
         <Forecast weather={this.state.weather} handleForecastClick={this.handleForecastClick} />
       </React.Fragment>
     );

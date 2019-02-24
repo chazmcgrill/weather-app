@@ -10,6 +10,7 @@ interface IWeatherDisplayProps {
     handleTextChange: any,
     locationText: string,
     handleLocationSubmit: any,
+    location: any,
 }
 
 export default (props: IWeatherDisplayProps) => {
@@ -19,7 +20,7 @@ export default (props: IWeatherDisplayProps) => {
     
     return (
         <div className="weather-display">
-            <h1>New York</h1>
+            <h1>{props.location.addressLabel}</h1>
             <h2>{NumberFormat.from(props.currentWeather.temperature).degreesC}</h2>
             <span className={`weather-display--icon mdi mdi-${WeatherIcons.weatherType(props.currentWeather.icon).iconSlug}`} />
             <h3>{props.currentWeather.summary}</h3>

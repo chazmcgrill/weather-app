@@ -15,8 +15,8 @@ app.get("/", (req, res) => {
     res.send("app working");
 });
 
-app.get("/api/weather", (req, res) => {
-    fetch(process.env.WEATHER_API_URL)
+app.get("/api/weather/:latlng", (req, res) => {
+    fetch(`${process.env.WEATHER_API_URL}${req.params.latlng}`)
         .then((data) => data.json())
         .then((data) => {
             return res.send(data);
