@@ -27,8 +27,8 @@ app.get("/api/weather", (req, res) => {
         });
 });
 
-app.get("/api/location", (req, res) => {
-    const url = `${process.env.LOCATION_API_URL}&address=${req.body.address}`;
+app.get("/api/location/:address", (req, res) => {
+    const url = `${process.env.LOCATION_API_URL}&address=${req.params.address}`;
     fetch(url)
         .then((data) => data.json())
         .then((data) => {

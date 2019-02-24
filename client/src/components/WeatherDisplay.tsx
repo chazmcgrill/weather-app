@@ -7,6 +7,9 @@ import './WeatherDisplay.css';
 interface IWeatherDisplayProps {
     weather: any;
     currentWeather: any,
+    handleTextChange: any,
+    locationText: string,
+    handleLocationSubmit: any,
 }
 
 export default (props: IWeatherDisplayProps) => {
@@ -33,6 +36,10 @@ export default (props: IWeatherDisplayProps) => {
             <div>
                 <span>UV Index: </span>
                 <span>{props.currentWeather.uvIndex}</span>
+            </div>
+            <div>
+                <input type="text" value={props.locationText} onChange={props.handleTextChange} />
+                <button onClick={props.handleLocationSubmit}>submit</button>
             </div>
         </div>
     );
