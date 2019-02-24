@@ -8,6 +8,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
     res.send("app working");
@@ -24,6 +26,19 @@ app.get("/api/weather", (req, res) => {
             console.log(err);
         });
 });
+
+app.get("/api/location", (req, res) => {
+    const url = `${process.env.LOCATION_API_URL}&address=${req.body.address}`;
+    fetch(url)
+        .then((data) => data.json())
+        .then((data) => {
+            return res.send(data);
+        })
+        .catch((err) => {
+            // tslint:disable-next-line:no-console
+            console.log(err);
+        })
+})
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
