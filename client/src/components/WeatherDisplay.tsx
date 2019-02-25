@@ -38,9 +38,9 @@ export default (props: IWeatherDisplayProps) => {
                 <span>UV Index: </span>
                 <span>{props.currentWeather.uvIndex}</span>
             </div>
-            <div>
+            <div className="location-box">
                 <input type="text" value={props.locationText} onChange={props.handleTextChange} />
-                <button onClick={props.handleLocationSubmit}>submit</button>
+                <button onClick={props.handleLocationSubmit}>change location</button>
             </div>
         </div>
     );

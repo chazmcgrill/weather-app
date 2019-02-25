@@ -37,8 +37,8 @@ app.get("/api/location/:address", (req, res) => {
         .catch((err) => {
             // tslint:disable-next-line:no-console
             console.log(err);
-        })
-})
+        });
+});
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
