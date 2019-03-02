@@ -11,32 +11,58 @@ interface IWeatherDisplayProps {
     locationText: string,
     handleLocationSubmit: any,
     location: any,
+    isLoading: boolean,
 }
 
 export default (props: IWeatherDisplayProps) => {
-    if (Object.keys(props.currentWeather).length === 0) {
+    if (props.isLoading) {
         return <div>Loading...</div>;
+    }
+
+    const { currently } = props.weather;
+    const { currentWeather } = props;
+
+    let weather = {
+        temp: currently.temperature,
+        icon: currently.icon,
+        summary: currently.summary,
+        detailSummary: props.weather.hourly.summary,
+        windSpeed: currently.windSpeed,
+        humidity: currently.humidity,
+        uvIndex: currently.uvIndex,
+    }
+
+    if (currentWeather) {
+        weather = {
+            temp: currentWeather.temperature,
+            icon: currentWeather.icon,
+            summary: currentWeather.summary,
+            detailSummary: currentWeather.summary,
+            windSpeed: currentWeather.windSpeed,
+            humidity: currentWeather.humidity,
+            uvIndex: currentWeather.uvIndex,
+        }
     }
     
     return (
         <div className="weather-display">
             <h1>{props.location.addressLabel}</h1>
-            <h2>{NumberFormat.from(props.currentWeather.temperature).degreesC}</h2>
-            <span className={`weather-display--icon mdi mdi-${WeatherIcons.weatherType(props.currentWeather.icon).iconSlug}`} />
-            <h3>{props.currentWeather.summary}</h3>
-            <p>{props.weather.hourly.summary}</p>
+            <h2>{NumberFormat.from(weather.temp).degreesC}</h2>
+            <span className={`weather-display--icon mdi mdi-${WeatherIcons.weatherType(weather.icon).iconSlug}`} />
+            <h3>{weather.summary}</h3>
+            <p>{weather.detailSummary}</p>
 
             <div>
                 <span className="mdi mdi-weather-windy" />
-                <span>{`${props.currentWeather.windSpeed}mph`}</span>
+                <span>{`${weather.windSpeed}mph`}</span>
             </div>
             <div>
                 <span className="mdi mdi-umbrella" />
-                <span>{`${props.currentWeather.humidity * 100}%`}</span>
+                <span>{`${weather.humidity * 100}%`}</span>
             </div>
             <div>
                 <span>UV Index: </span>
-                <span>{props.currentWeather.uvIndex}</span>
+                <span>{weather.uvIndex}</span>
             </div>
             <div className="location-box">
                 <input type="text" value={props.locationText} onChange={props.handleTextChange} />

@@ -11,14 +11,16 @@ interface IState {
   weather: any,
   selectedWeather: {},
   locationText: string,
-  location: any
+  location: any,
+  isLoading: boolean,
 }
 
 export default class App extends React.Component<{}, IState> {
   public state: IState = {
     weather: {},
-    selectedWeather: {},
+    selectedWeather: false,
     locationText: '',
+    isLoading: true,
     location: {
       addressLabel: 'Leeds UK',
       geometry: {
@@ -52,8 +54,7 @@ export default class App extends React.Component<{}, IState> {
     const { lat, lng } = this.state.location.geometry;
     const latlng = `${lat},${lng}`;
     const weather: any = await this.api(`${DEV_API}/${latlng}`);
-    const selectedWeather = weather.daily.data[0];
-    this.setState({ weather, selectedWeather });
+    this.setState({ weather, isLoading: false });
   }
   
   public api<T>(url: string): Promise<T> { 
@@ -91,7 +92,15 @@ export default class App extends React.Component<{}, IState> {
     return (
       <React.Fragment>
         <Header />
-        <WeatherDisplay location={this.state.location} weather={this.state.weather} currentWeather={this.state.selectedWeather} handleTextChange={this.handleTextChange} locationText={this.state.locationText} handleLocationSubmit={this.handleLocationSubmit} />
+        <WeatherDisplay
+          location={this.state.location}
+          weather={this.state.weather}
+          currentWeather={this.state.selectedWeather}
+          handleTextChange={this.handleTextChange}
+          locationText={this.state.locationText}
+          handleLocationSubmit={this.handleLocationSubmit}
+          isLoading={this.state.isLoading}
+        />
         <Forecast weather={this.state.weather} handleForecastClick={this.handleForecastClick} />
       </React.Fragment>
     );
