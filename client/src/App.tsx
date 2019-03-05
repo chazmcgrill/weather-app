@@ -8,11 +8,23 @@ const DEV_API = 'http://localhost:4000/api/weather';
 // const PROD_API = 'https://vast-brushlands-88355.herokuapp.com/api/weather';
 
 interface IState {
-  weather: any,
-  selectedWeather: {},
+  weather: Weather
+  selectedWeather: {} | boolean,
   locationText: string,
-  location: any,
+  location: {
+    addressLabel: string,
+    geometry: {
+      lat: number,
+      lng: number,
+    }
+  },
   isLoading: boolean,
+}
+
+interface Weather {
+  hourly?: {
+    data: {}[]
+  }
 }
 
 export default class App extends React.Component<{}, IState> {
@@ -42,7 +54,7 @@ export default class App extends React.Component<{}, IState> {
   public handleLocationSubmit = async () => {
     const locationData: any = await this.fetchLocation(this.state.locationText);
     const { formatted_address, geometry } = locationData.results[0];
-    const location: any = {
+    const location = {
       addressLabel: formatted_address,
       geometry: geometry.location
     }
@@ -53,7 +65,7 @@ export default class App extends React.Component<{}, IState> {
   public async fetchWeatherData() {
     const { lat, lng } = this.state.location.geometry;
     const latlng = `${lat},${lng}`;
-    const weather: any = await this.api(`${DEV_API}/${latlng}`);
+    const weather: Weather = await this.api(`${DEV_API}/${latlng}`);
     this.setState({ weather, isLoading: false });
   }
   
@@ -84,7 +96,7 @@ export default class App extends React.Component<{}, IState> {
   }
 
   handleForecastClick = (idx: number) => {
-    const selectedWeather = this.state.weather.hourly.data[idx]
+    const selectedWeather = this.state.weather.hourly!.data[idx]
     this.setState({ selectedWeather });
   }
 
