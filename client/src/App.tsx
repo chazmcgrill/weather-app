@@ -3,13 +3,14 @@ import './App.css';
 import Forecast from './components/Forecast';
 import Header from './components/Header';
 import WeatherDisplay from './components/WeatherDisplay';
-
+import { IWeather } from './interfaces';
+ 
 const DEV_API = 'http://localhost:4000/api/weather';
 // const PROD_API = 'https://vast-brushlands-88355.herokuapp.com/api/weather';
 
 interface IState {
-  weather: Weather
-  selectedWeather: {} | boolean,
+  weather: IWeather
+  selectedWeather: IWeather | boolean,
   locationText: string,
   location: {
     addressLabel: string,
@@ -19,12 +20,6 @@ interface IState {
     }
   },
   isLoading: boolean,
-}
-
-interface Weather {
-  hourly?: {
-    data: {}[]
-  }
 }
 
 export default class App extends React.Component<{}, IState> {
@@ -65,7 +60,7 @@ export default class App extends React.Component<{}, IState> {
   public async fetchWeatherData() {
     const { lat, lng } = this.state.location.geometry;
     const latlng = `${lat},${lng}`;
-    const weather: Weather = await this.api(`${DEV_API}/${latlng}`);
+    const weather: IWeather = await this.api(`${DEV_API}/${latlng}`);
     this.setState({ weather, isLoading: false });
   }
   

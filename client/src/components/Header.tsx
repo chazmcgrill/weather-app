@@ -1,7 +1,10 @@
 import * as React from 'react';
 import './Header.css';
 
-class Header extends React.Component {
+interface IState {
+  isSettingsOpen: boolean
+}
+class Header extends React.Component<{}, IState> {
   state = {
     isSettingsOpen: false,
   }

@@ -3,9 +3,10 @@ import WeatherIcons from '../classes/WeatherIcons';
 import NumberFormat from '../classes/NumberFormat';
 import '@mdi/font/css/materialdesignicons.css';
 import './WeatherDisplay.css';
+import { IWeather } from '../interfaces';
 
 interface IWeatherDisplayProps {
-    weather: any;
+    weather: IWeather;
     currentWeather: any,
     handleTextChange: any,
     locationText: string,
@@ -23,13 +24,13 @@ export default (props: IWeatherDisplayProps) => {
     const { currentWeather } = props;
 
     let weather = {
-        temp: currently.temperature,
-        icon: currently.icon,
-        summary: currently.summary,
-        detailSummary: props.weather.hourly.summary,
-        windSpeed: currently.windSpeed,
-        humidity: currently.humidity,
-        uvIndex: currently.uvIndex,
+        temp: currently!.temperature,
+        icon: currently!.icon,
+        summary: currently!.summary,
+        detailSummary: props.weather.hourly!.summary,
+        windSpeed: currently!.windSpeed,
+        humidity: currently!.humidity,
+        uvIndex: currently!.uvIndex,
     }
 
     if (currentWeather) {

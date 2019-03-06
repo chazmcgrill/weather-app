@@ -3,9 +3,10 @@ import WeatherIcons from '../classes/WeatherIcons';
 import NumberFormat from '../classes/NumberFormat';
 import '@mdi/font/css/materialdesignicons.css';
 import './Forecast.css';
+import { IWeather, IForecast } from '../interfaces';
 
 interface IForecastProps {
-    weather: any,
+    weather: IWeather,
     handleForecastClick: (idx: number) => void,
 }
 
@@ -14,14 +15,14 @@ export default (props: IForecastProps) => {
         return <div>Loading...</div>
     }
 
-    const { data: forecast } = props.weather.daily;
+    const { data: forecast } = props.weather.daily!;
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     let currentDay = new Date().getDay();
 
     return (
         <div className="forecast">
-            {forecast.map((day: any, idx: number) => {
+            {forecast.map((day: any, idx) => {
                 const dayIndex = currentDay + idx > 6 ? currentDay + idx - 7 : currentDay + idx;
                 const dayText = days[dayIndex];
                 return (
