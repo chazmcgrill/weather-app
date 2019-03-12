@@ -22,7 +22,7 @@ export default (props: IForecastProps) => {
 
     return (
         <div className="forecast">
-            {forecast.map((day: any, idx) => {
+            {forecast.slice(0, 6).map((day: any, idx) => {
                 const dayIndex = currentDay + idx > 6 ? currentDay + idx - 7 : currentDay + idx;
                 const dayText = days[dayIndex];
                 return (

@@ -9,11 +9,20 @@ export default class NumberFormat {
         return new NumberFormat(val);
     }
 
+    get farenheitToCelcius() {
+        const f = this.val;
+        return Math.round((f - 32) * 5 / 9);
+    }
+
+    get integer() {
+        return Math.round(this.val);
+    }
+
     get degreesC() {
-        return `${Math.round(this.val)}°C`;
+        return `${this.farenheitToCelcius}°C`;
     }
 
     get degreesF() {
-        return `${Math.round(this.val)}°F`;
+        return `${this.integer}°F`;
     }
 }
