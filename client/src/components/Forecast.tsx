@@ -8,6 +8,7 @@ import { IWeather, IForecast } from '../interfaces';
 interface IForecastProps {
     weather: IWeather,
     handleForecastClick: (idx: number) => void,
+    temperature: string,
 }
 
 export default (props: IForecastProps) => {
@@ -20,6 +21,8 @@ export default (props: IForecastProps) => {
 
     let currentDay = new Date().getDay();
 
+    const tempSetting = props.temperature === 'Celcius' ? 'degreesC' : 'degreesF';
+
     return (
         <div className="forecast">
             {forecast.slice(0, 6).map((day: any, idx) => {
@@ -29,8 +32,8 @@ export default (props: IForecastProps) => {
                     <div key={day.time} className="forecast-card" onClick={() => props.handleForecastClick(idx)}>
                         <span>{dayText}</span>
                         <span className={`mdi mdi-${WeatherIcons.weatherType(day.icon).iconSlug}`} />
-                        <span>{NumberFormat.from(day.temperatureMax).degreesC}</span>
-                        <span>{NumberFormat.from(day.temperatureMin).degreesC}</span>
+                        <span>{NumberFormat.from(day.temperatureMax)[tempSetting]}</span>
+                        <span>{NumberFormat.from(day.temperatureMin)[tempSetting]}</span>
                     </div>
                 )
             })}

@@ -18,6 +18,8 @@
 .header-settings {
     position: absolute;
     background: white;
+    display: flex;
+    flex-direction: column;
     right: 1rem;
     top: 4rem;
     padding: 2rem;

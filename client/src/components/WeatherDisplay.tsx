@@ -13,6 +13,7 @@ interface IWeatherDisplayProps {
     handleLocationSubmit: any,
     location: any,
     isLoading: boolean,
+    temperature: string,
 }
 
 export default (props: IWeatherDisplayProps) => {
@@ -44,11 +45,13 @@ export default (props: IWeatherDisplayProps) => {
             uvIndex: currentWeather.uvIndex,
         }
     }
+
+    const tempSetting = props.temperature === 'Celcius' ? 'degreesC' : 'degreesF';
     
     return (
         <div className="weather-display">
             <h1>{props.location.addressLabel}</h1>
-            <h2>{NumberFormat.from(weather.temp).degreesC}</h2>
+            <h2>{NumberFormat.from(weather.temp)[tempSetting]}</h2>
             <span className={`weather-display--icon mdi mdi-${WeatherIcons.weatherType(weather.icon).iconSlug}`} />
             <h3>{weather.summary}</h3>
             <p>{weather.detailSummary}</p>

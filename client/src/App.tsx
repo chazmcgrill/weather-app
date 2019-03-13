@@ -20,6 +20,7 @@ interface IState {
     }
   },
   isLoading: boolean,
+  temperature: string,
 }
 
 export default class App extends React.Component<{}, IState> {
@@ -35,6 +36,7 @@ export default class App extends React.Component<{}, IState> {
         lng: -1.5490774
       }
     },
+    temperature: 'Celcius'
   }
 
   public componentDidMount() {
@@ -44,6 +46,11 @@ export default class App extends React.Component<{}, IState> {
   public handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const locationText = event.target.value;
     this.setState({ locationText });
+  }
+
+  public changeTemperature = () => {
+    const temperature = this.state.temperature === 'Celcius' ? 'Farenheit' : 'Celcius';
+    this.setState({ temperature });
   }
 
   public handleLocationSubmit = async () => {
@@ -98,7 +105,7 @@ export default class App extends React.Component<{}, IState> {
   public render() {
     return (
       <React.Fragment>
-        <Header />
+        <Header changeTemperature={this.changeTemperature} temperature={this.state.temperature} />
         <WeatherDisplay
           location={this.state.location}
           weather={this.state.weather}
@@ -107,8 +114,9 @@ export default class App extends React.Component<{}, IState> {
           locationText={this.state.locationText}
           handleLocationSubmit={this.handleLocationSubmit}
           isLoading={this.state.isLoading}
+          temperature={this.state.temperature}
         />
-        <Forecast weather={this.state.weather} handleForecastClick={this.handleForecastClick} />
+        <Forecast weather={this.state.weather} handleForecastClick={this.handleForecastClick} temperature={this.state.temperature} />
       </React.Fragment>
     );
   }

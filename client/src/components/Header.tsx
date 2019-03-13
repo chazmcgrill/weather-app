@@ -2,9 +2,14 @@ import * as React from 'react';
 import './Header.css';
 
 interface IState {
-  isSettingsOpen: boolean
+  isSettingsOpen: boolean,
 }
-class Header extends React.Component<{}, IState> {
+
+interface IProps {
+  temperature: string,
+  changeTemperature: () => void,
+}
+class Header extends React.Component<IProps, IState> {
   state = {
     isSettingsOpen: false,
   }
@@ -24,7 +29,9 @@ class Header extends React.Component<{}, IState> {
 
         {isSettingsOpen && (
           <div className="header-settings">
-            Settings Menu
+            <span>Settings Menu</span>
+            <p onClick={this.props.changeTemperature}>Temperature</p>
+            <span>{this.props.temperature}</span>
           </div>
         )}
       </header>
