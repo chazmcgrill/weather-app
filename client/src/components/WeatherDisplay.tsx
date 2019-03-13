@@ -58,7 +58,7 @@ export default (props: IWeatherDisplayProps) => {
 
             <div>
                 <span className="mdi mdi-weather-windy" />
-                <span>{`${weather.windSpeed}mph`}</span>
+                <span>{NumberFormat.from(weather.windSpeed).mph}</span>
             </div>
             <div>
                 <span className="mdi mdi-umbrella" />

@@ -14,6 +14,19 @@ export default class NumberFormat {
         return Math.round((f - 32) * 5 / 9);
     }
 
+    get mphToKph() {
+        const mph = this.val;
+        return mph * 1.60934;
+    }
+
+    get kph() {
+        return `${this.mphToKph}kph`;
+    }
+
+    get mph() {
+        return `${this.integer}mph`;
+    }
+
     get integer() {
         return Math.round(this.val);
     }
