@@ -14,9 +14,11 @@ interface IWeatherDisplayProps {
     location: any,
     isLoading: boolean,
     temperature: string,
+    speed: string,
 }
 
 export default (props: IWeatherDisplayProps) => {
+
     if (props.isLoading) {
         return <div>Loading...</div>;
     }
@@ -58,7 +60,7 @@ export default (props: IWeatherDisplayProps) => {
 
             <div>
                 <span className="mdi mdi-weather-windy" />
-                <span>{NumberFormat.from(weather.windSpeed).mph}</span>
+                <span>{NumberFormat.from(weather.windSpeed)[props.speed]}</span>
             </div>
             <div>
                 <span className="mdi mdi-umbrella" />

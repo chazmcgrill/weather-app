@@ -16,7 +16,7 @@ export default class NumberFormat {
 
     get mphToKph() {
         const mph = this.val;
-        return mph * 1.60934;
+        return Math.round(mph * 1.60934);
     }
 
     get kph() {

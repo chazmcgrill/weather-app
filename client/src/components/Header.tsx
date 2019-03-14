@@ -8,6 +8,8 @@ interface IState {
 interface IProps {
   temperature: string,
   changeTemperature: () => void,
+  speed: string,
+  changeSpeed: () => void,
 }
 class Header extends React.Component<IProps, IState> {
   state = {
@@ -32,6 +34,8 @@ class Header extends React.Component<IProps, IState> {
             <span>Settings Menu</span>
             <p onClick={this.props.changeTemperature}>Temperature</p>
             <span>{this.props.temperature}</span>
+            <p onClick={this.props.changeSpeed}>Speed</p>
+            <span>{this.props.speed}</span>
           </div>
         )}
       </header>
