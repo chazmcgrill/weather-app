@@ -25,19 +25,21 @@ class Header extends React.Component<IProps, IState> {
     
     return (
       <header className="header">
-        <span className="mdi mdi-emoticon-happy-outline" />
-        <h4>Weather</h4>
-        <span className="mdi mdi-settings" onClick={this.toggleSettings} />
+        <div className="section-wrapper header-section-wrapper">
+          <span className="mdi mdi-emoticon-happy-outline" />
+          <h4>Weather</h4>
+          <span className="mdi mdi-settings" onClick={this.toggleSettings} />
 
-        {isSettingsOpen && (
-          <div className="header-settings">
-            <span>Settings Menu</span>
-            <p onClick={this.props.changeTemperature}>Temperature</p>
-            <span>{this.props.temperature}</span>
-            <p onClick={this.props.changeSpeed}>Speed</p>
-            <span>{this.props.speed}</span>
-          </div>
-        )}
+          {isSettingsOpen && (
+            <div className="header-settings">
+              <span>Settings Menu</span>
+              <p onClick={this.props.changeTemperature}>Temperature</p>
+              <span>{this.props.temperature}</span>
+              <p onClick={this.props.changeSpeed}>Speed</p>
+              <span>{this.props.speed}</span>
+            </div>
+          )}
+        </div>
       </header>
     )
   }

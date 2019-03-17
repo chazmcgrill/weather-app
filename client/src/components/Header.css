@@ -1,9 +1,12 @@
 .header {
+    padding: 0.5rem 1rem;
+    background: pink;
+}
+
+.header-section-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
-    background: pink;
     position: relative;
 }
 
@@ -20,7 +23,7 @@
     background: white;
     display: flex;
     flex-direction: column;
-    right: 1rem;
+    right: 0;
     top: 4rem;
     padding: 2rem;
     box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.75);

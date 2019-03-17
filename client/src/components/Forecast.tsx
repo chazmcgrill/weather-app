@@ -25,18 +25,20 @@ export default (props: IForecastProps) => {
 
     return (
         <div className="forecast">
-            {forecast.slice(0, 6).map((day: any, idx) => {
-                const dayIndex = currentDay + idx > 6 ? currentDay + idx - 7 : currentDay + idx;
-                const dayText = days[dayIndex];
-                return (
-                    <div key={day.time} className="forecast-card" onClick={() => props.handleForecastClick(idx)}>
-                        <span>{dayText}</span>
-                        <span className={`mdi mdi-${WeatherIcons.weatherType(day.icon).iconSlug}`} />
-                        <span>{NumberFormat.from(day.temperatureMax)[tempSetting]}</span>
-                        <span>{NumberFormat.from(day.temperatureMin)[tempSetting]}</span>
-                    </div>
-                )
-            })}
+            <div className="section-wrapper forecast-section-wrapper">
+                {forecast.slice(0, 6).map((day: any, idx) => {
+                    const dayIndex = currentDay + idx > 6 ? currentDay + idx - 7 : currentDay + idx;
+                    const dayText = days[dayIndex];
+                    return (
+                        <div key={day.time} className="forecast-card" onClick={() => props.handleForecastClick(idx)}>
+                            <span>{dayText}</span>
+                            <span className={`mdi mdi-${WeatherIcons.weatherType(day.icon).iconSlug}`} />
+                            <span>{NumberFormat.from(day.temperatureMax)[tempSetting]}</span>
+                            <span>{NumberFormat.from(day.temperatureMin)[tempSetting]}</span>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     );
 }

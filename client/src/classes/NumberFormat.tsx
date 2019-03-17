@@ -38,4 +38,13 @@ export default class NumberFormat {
     get degreesF() {
         return `${this.integer}°F`;
     }
+
+    get percent() {
+        return `${this.integer}%`;
+    }
+
+    get factorToPercent() {
+        const percentage = this.val * 100;
+        return `${Math.round(percentage)}%`;
+    }
 }

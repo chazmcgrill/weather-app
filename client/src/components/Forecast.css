@@ -3,7 +3,11 @@
     bottom: 0;
     background: pink;
     left: 0;
-    right: 0; 
+    right: 0;
+    height: 120px;
+}
+
+.forecast-section-wrapper {
     display: flex;
     justify-content: space-evenly;
 }

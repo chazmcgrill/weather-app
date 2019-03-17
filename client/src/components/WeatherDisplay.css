@@ -4,13 +4,39 @@
     padding: 0.5rem 1rem;
 }
 
+.weather-display-wrapper {
+    max-width: 320px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
 .weather-display--icon {
     font-size: 50px;
 }
 
-.location-box {
+.weather-stats {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 150px;
+}
+
+.weather-stat {
     display: flex;
     flex-direction: column;
+}
+
+.weather-stat-icon {
+    font-size: 24px;
+}
+
+.weather-stat-text {
+    font-size: 12px;
+}
+
+.location-box {
+    display: flex;
     max-width: 200px;
 }
 

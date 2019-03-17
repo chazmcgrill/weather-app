@@ -52,27 +52,32 @@ export default (props: IWeatherDisplayProps) => {
     
     return (
         <div className="weather-display">
-            <h1>{props.location.addressLabel}</h1>
-            <h2>{NumberFormat.from(weather.temp)[tempSetting]}</h2>
-            <span className={`weather-display--icon mdi mdi-${WeatherIcons.weatherType(weather.icon).iconSlug}`} />
-            <h3>{weather.summary}</h3>
-            <p>{weather.detailSummary}</p>
+            <div className="weather-display-wrapper">
+                <h1>{props.location.addressLabel}</h1>
+                <h2>{NumberFormat.from(weather.temp)[tempSetting]}</h2>
+                <span className={`weather-display--icon mdi mdi-${WeatherIcons.weatherType(weather.icon).iconSlug}`} />
+                <h3>{weather.summary}</h3>
+                <p>{weather.detailSummary}</p>
 
-            <div>
-                <span className="mdi mdi-weather-windy" />
-                <span>{NumberFormat.from(weather.windSpeed)[props.speed]}</span>
-            </div>
-            <div>
-                <span className="mdi mdi-umbrella" />
-                <span>{`${weather.humidity * 100}%`}</span>
-            </div>
-            <div>
-                <span>UV Index: </span>
-                <span>{weather.uvIndex}</span>
-            </div>
-            <div className="location-box">
-                <input type="text" value={props.locationText} onChange={props.handleTextChange} />
-                <button onClick={props.handleLocationSubmit}>change location</button>
+                <div className="weather-stats">
+                    <div className="weather-stat">
+                        <span className="mdi mdi-weather-windy weather-stat-icon" />
+                        <span className="weather-stat-text">{NumberFormat.from(weather.windSpeed)[props.speed]}</span>
+                    </div>
+                    <div className="weather-stat">
+                        <span className="mdi mdi-umbrella weather-stat-icon" />
+                        <span className="weather-stat-text">{NumberFormat.from(weather.humidity).factorToPercent}</span>
+                    </div>
+                    <div className="weather-stat">
+                        <span className="mdi mdi-sunglasses weather-stat-icon" />
+                        <span className="weather-stat-text">{weather.uvIndex}</span>
+                    </div>
+                </div>
+
+                <div className="location-box">
+                    <input type="text" value={props.locationText} onChange={props.handleTextChange} />
+                    <button onClick={props.handleLocationSubmit}>change location</button>
+                </div>
             </div>
         </div>
     );
